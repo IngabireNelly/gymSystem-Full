@@ -1,0 +1,164 @@
+{
+  "info": {
+    "name": "Gym Equipment Rental API",
+    "description": "CRUD + business workflow endpoints for Equipment, Member, and Rental",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8081" }
+  ],
+  "item": [
+    {
+      "name": "Equipment",
+      "item": [
+        {
+          "name": "Create Equipment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipmentName\": \"Treadmill Pro X\",\n  \"category\": \"Cardio\",\n  \"dailyRentalRate\": 5000,\n  \"purchaseDate\": \"2025-01-15\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/equipment", "host": ["{{baseUrl}}"], "path": ["api", "equipment"] }
+          }
+        },
+        {
+          "name": "Get All Equipment",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/equipment", "host": ["{{baseUrl}}"], "path": ["api", "equipment"] }
+          }
+        },
+        {
+          "name": "Get Equipment By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/equipment/1", "host": ["{{baseUrl}}"], "path": ["api", "equipment", "1"] }
+          }
+        },
+        {
+          "name": "Update Equipment",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipmentName\": \"Treadmill Pro X (Updated)\",\n  \"category\": \"Cardio\",\n  \"dailyRentalRate\": 5500,\n  \"purchaseDate\": \"2025-01-15\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/equipment/1", "host": ["{{baseUrl}}"], "path": ["api", "equipment", "1"] }
+          }
+        },
+        {
+          "name": "Delete Equipment",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/equipment/1", "host": ["{{baseUrl}}"], "path": ["api", "equipment", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Member",
+      "item": [
+        {
+          "name": "Create Member",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Nelly Ingabire\",\n  \"phoneNumber\": \"0781234567\",\n  \"membershipType\": \"MONTHLY\",\n  \"joinDate\": \"2026-01-10\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/members", "host": ["{{baseUrl}}"], "path": ["api", "members"] }
+          }
+        },
+        {
+          "name": "Get All Members",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/members", "host": ["{{baseUrl}}"], "path": ["api", "members"] }
+          }
+        },
+        {
+          "name": "Get Member By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/members/1", "host": ["{{baseUrl}}"], "path": ["api", "members", "1"] }
+          }
+        },
+        {
+          "name": "Update Member",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Nelly Ingabire\",\n  \"phoneNumber\": \"0781234567\",\n  \"membershipType\": \"ANNUAL\",\n  \"joinDate\": \"2026-01-10\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/members/1", "host": ["{{baseUrl}}"], "path": ["api", "members", "1"] }
+          }
+        },
+        {
+          "name": "Delete Member",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/members/1", "host": ["{{baseUrl}}"], "path": ["api", "members", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rental",
+      "item": [
+        {
+          "name": "Create Rental (business rules applied)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipmentId\": 1,\n  \"memberId\": 1,\n  \"dueDate\": \"2026-10-05\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/rentals", "host": ["{{baseUrl}}"], "path": ["api", "rentals"] }
+          }
+        },
+        {
+          "name": "Get All Rentals",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/rentals", "host": ["{{baseUrl}}"], "path": ["api", "rentals"] }
+          }
+        },
+        {
+          "name": "Get Rental By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/rentals/1", "host": ["{{baseUrl}}"], "path": ["api", "rentals", "1"] }
+          }
+        },
+        {
+          "name": "Return Rental (computes late fee if overdue)",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{baseUrl}}/api/rentals/1/return", "host": ["{{baseUrl}}"], "path": ["api", "rentals", "1", "return"] }
+          }
+        },
+        {
+          "name": "Get Overdue Rentals",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/rentals/overdue", "host": ["{{baseUrl}}"], "path": ["api", "rentals", "overdue"] }
+          }
+        },
+        {
+          "name": "Delete Rental",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/rentals/1", "host": ["{{baseUrl}}"], "path": ["api", "rentals", "1"] }
+          }
+        }
+      ]
+    }
+  ]
+}
